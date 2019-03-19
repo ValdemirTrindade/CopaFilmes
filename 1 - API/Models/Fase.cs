@@ -9,6 +9,7 @@ namespace API.Models
     {
         private Partida[] partidas;
         private Juiz juiz;
+        private Filme ganhador;
 
         public Fase(params Filme[] filmes)
         {
@@ -47,6 +48,33 @@ namespace API.Models
             }
 
             return vencedores;
+        }
+
+        private void montarPartidaParaProximaFase(Filme[] filmes)
+        {
+            this.partidas = new Partida[filmes.Length / 2];
+
+            for (int x = 0, rodada = 1; x < partidas.Length; x += 2, rodada++)
+            {
+                this.partidas[x] = new Partida(juiz, filmes[x], filmes[x+1], rodada);
+            }
+        }
+
+        public bool proximaFase(Filme[] filmes)
+        {
+            if (filmes.Length == 1)
+            {
+                this.ganhador = filmes[0];
+                return false;
+            }
+            montarPartidaParaProximaFase(filmes);
+
+            return true;
+        }
+
+        public Filme getGanhador()
+        {
+            return this.ganhador;
         }
     }
 }

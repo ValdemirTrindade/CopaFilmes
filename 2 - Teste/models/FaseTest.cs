@@ -8,7 +8,7 @@ using API.Models;
 namespace Teste.models
 {
     public class FaseTest
-    {     
+    {
         [Fact]
         public void testeQuantidadePartidas4()
         {
@@ -25,7 +25,7 @@ namespace Teste.models
             Filme[] filmes = { filme1, filme2, filme3, filme4, filme5, filme6, filme7, filme8 };
 
             Fase fase = new Fase(filmes);
-            
+
             Assert.Equal(4, fase.getPartidas().Length);
         }
 
@@ -46,7 +46,7 @@ namespace Teste.models
 
             Fase fase = new Fase(filmes);
 
-           
+
 
             Partida[] p = fase.getPartidas();
 
@@ -68,7 +68,7 @@ namespace Teste.models
 
 
 
-            Filme[] filmes = { filme1, filme2, filme3, filme4};
+            Filme[] filmes = { filme1, filme2, filme3, filme4 };
 
             Fase fase = new Fase(filmes);
 
@@ -79,7 +79,7 @@ namespace Teste.models
 
             Assert.Equal("Rodada 1 filme 1 vs filme 4", p[0].toString());
             Assert.Equal("Rodada 2 filme 2 vs filme 3", p[1].toString());
-  
+
 
         }
 
@@ -137,6 +137,52 @@ namespace Teste.models
             Filme[] filmesVencedores = fase.comecar();
 
             Assert.Equal(4, filmesVencedores.Length);
+        }
+
+        [Fact]
+        public void testeProximaFase()
+        {
+            Filme filme1 = new Filme { Titulo = "filme 1", Nota = 10 };
+            Filme filme2 = new Filme { Titulo = "filme 2", Nota = 10 };
+            Filme filme3 = new Filme { Titulo = "filme 3", Nota = 10 };
+            Filme filme4 = new Filme { Titulo = "filme 4", Nota = 10 };
+            Filme filme5 = new Filme { Titulo = "filme 5", Nota = 10 };
+            Filme filme6 = new Filme { Titulo = "filme 6", Nota = 10 };
+            Filme filme7 = new Filme { Titulo = "filme 7", Nota = 10 };
+            Filme filme8 = new Filme { Titulo = "filme 8", Nota = 10 };
+
+
+            Filme[] filmes = { filme1, filme2, filme3, filme4, filme5, filme6, filme7, filme8 };
+            Filme[] filmes2 = { filme1, filme2, filme3, filme4 };
+            Fase fase = new Fase(filmes);
+
+            fase.proximaFase(filmes2);
+
+            Assert.Equal(2, fase.getPartidas().Length);
+
+        }
+
+        [Fact]
+        public void testeProximaFaseFinal()
+        {
+            Filme filme1 = new Filme { Titulo = "filme 1", Nota = 10 };
+            Filme filme2 = new Filme { Titulo = "filme 2", Nota = 10 };
+            Filme filme3 = new Filme { Titulo = "filme 3", Nota = 10 };
+            Filme filme4 = new Filme { Titulo = "filme 4", Nota = 10 };
+            Filme filme5 = new Filme { Titulo = "filme 5", Nota = 10 };
+            Filme filme6 = new Filme { Titulo = "filme 6", Nota = 10 };
+            Filme filme7 = new Filme { Titulo = "filme 7", Nota = 10 };
+            Filme filme8 = new Filme { Titulo = "filme 8", Nota = 10 };
+
+
+            Filme[] filmes = { filme1, filme2, filme3, filme4, filme5, filme6, filme7, filme8 };
+            Filme[] filmes2 = { filme1 };
+            Fase fase = new Fase(filmes);
+
+            
+
+            Assert.False(fase.proximaFase(filmes2));
+
         }
     }
 }
