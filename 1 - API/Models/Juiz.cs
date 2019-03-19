@@ -12,20 +12,20 @@ namespace API.Models
      */
     class Juiz
     {
-        public Filme partida(Filme filmeA, Filme filmeB)
+        public Filme quemGanhou(Filme filmeA, Filme filmeB)
         {
             if (filmeA.Nota > filmeB.Nota) return filmeA;
             else if(filmeA.Nota == filmeB.Nota) return ordenar(filmeA, filmeB).ElementAt(0);
             else return filmeB;
         }
 
-        private List<Filme> ordenar(params Filme[] filmes)
+        public Filme[] ordenar(params Filme[] filmes)
         {
             List<Filme> listaFilmes = new List<Filme>();
 
             listaFilmes.AddRange(filmes);
 
-            return listaFilmes.OrderBy(f => f.Titulo).ToList();
+            return listaFilmes.OrderBy(f => f.Titulo).ToArray();
             
         }
     }
