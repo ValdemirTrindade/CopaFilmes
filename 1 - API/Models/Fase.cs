@@ -34,5 +34,19 @@ namespace API.Models
                 this.partidas[x] = new Partida(juiz, filmes[x], filmes[y], rodada);
             }
         }
+
+        public Filme[] comecar()
+        {
+            Filme[] vencedores = new Filme[this.partidas.Length];
+
+            int contador = 0;
+            foreach(Partida p in this.partidas)
+            {
+               vencedores[contador] = p.comecarPartida();
+               contador++;
+            }
+
+            return vencedores;
+        }
     }
 }

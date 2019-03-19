@@ -8,10 +8,7 @@ using API.Models;
 namespace Teste.models
 {
     public class FaseTest
-    {
-       
-
-
+    {     
         [Fact]
         public void testeQuantidadePartidas4()
         {
@@ -117,6 +114,29 @@ namespace Teste.models
             Fase fase = new Fase(filmes);
 
             Assert.Single(fase.getPartidas());
+        }
+
+
+        [Fact]
+        public void testeComecarFase()
+        {
+            Filme filme1 = new Filme { Titulo = "filme 1", Nota = 10 };
+            Filme filme2 = new Filme { Titulo = "filme 2", Nota = 10 };
+            Filme filme3 = new Filme { Titulo = "filme 3", Nota = 10 };
+            Filme filme4 = new Filme { Titulo = "filme 4", Nota = 10 };
+            Filme filme5 = new Filme { Titulo = "filme 5", Nota = 10 };
+            Filme filme6 = new Filme { Titulo = "filme 6", Nota = 10 };
+            Filme filme7 = new Filme { Titulo = "filme 7", Nota = 10 };
+            Filme filme8 = new Filme { Titulo = "filme 8", Nota = 10 };
+
+
+            Filme[] filmes = { filme1, filme2, filme3, filme4, filme5, filme6, filme7, filme8 };
+
+            Fase fase = new Fase(filmes);
+
+            Filme[] filmesVencedores = fase.comecar();
+
+            Assert.Equal(4, filmesVencedores.Length);
         }
     }
 }
