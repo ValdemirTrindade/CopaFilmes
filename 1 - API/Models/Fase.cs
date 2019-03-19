@@ -52,11 +52,12 @@ namespace API.Models
 
         private void montarPartidaParaProximaFase(Filme[] filmes)
         {
+            this.partidas = null;
             this.partidas = new Partida[filmes.Length / 2];
 
-            for (int x = 0, rodada = 1; x < partidas.Length; x += 2, rodada++)
+            for (int x = 0, rodada = 1; x < filmes.Length; x += 2, rodada++)
             {
-                this.partidas[x] = new Partida(juiz, filmes[x], filmes[x+1], rodada);
+                this.partidas[rodada-1] = new Partida(juiz, filmes[x], filmes[x+1], rodada);
             }
         }
 
@@ -65,11 +66,12 @@ namespace API.Models
             if (filmes.Length == 1)
             {
                 this.ganhador = filmes[0];
-                return false;
+              
+                return true;
             }
             montarPartidaParaProximaFase(filmes);
 
-            return true;
+            return false;
         }
 
         public Filme getGanhador()
