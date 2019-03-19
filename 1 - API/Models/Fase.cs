@@ -67,11 +67,11 @@ namespace API.Models
             {
                 this.ganhador = filmes[0];
               
-                return true;
+                return false;
             }
             montarPartidaParaProximaFase(filmes);
 
-            return false;
+            return true;
         }
 
         public Filme getGanhador()

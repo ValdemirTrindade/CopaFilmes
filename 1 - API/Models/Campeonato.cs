@@ -45,11 +45,11 @@ namespace API.Models
         public ResultadoCampeonato Iniciar()
         {
 
-
+            if (this.filmes.Length == 0) return null;
             do
             {
                 this.filmes = fase.comecar();
-            } while (!fase.proximaFase(this.filmes));
+            } while (fase.proximaFase(this.filmes));
 
             ResultadoCampeonato resultado = new ResultadoCampeonato();
 
@@ -58,6 +58,9 @@ namespace API.Models
             if (vencedor == null) return null;
 
             resultado.Titulo = vencedor.Titulo;
+            resultado.Nota = vencedor.Nota;
+            resultado.Id = vencedor.Id;
+            resultado.AnoLancamento = vencedor.AnoLancamento;
 
             return resultado;
         }
