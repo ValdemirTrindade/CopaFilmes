@@ -10,6 +10,7 @@ namespace API.Models
         private Partida[] partidas;
         private Juiz juiz;
         private Filme ganhador;
+       
 
         public Fase(params Filme[] filmes)
         {
@@ -78,5 +79,7 @@ namespace API.Models
         {
             return this.ganhador;
         }
+
+       
     }
 }

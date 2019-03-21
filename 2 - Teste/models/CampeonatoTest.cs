@@ -27,7 +27,7 @@ namespace Teste.models
 
             var resultado = camp.Iniciar();
 
-            Assert.Equal(ganhador.Titulo, resultado.Titulo);
+            Assert.Equal(ganhador.Titulo, resultado.primeiroLugar);
         }
     }
 }

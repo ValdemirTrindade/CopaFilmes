@@ -44,23 +44,34 @@ namespace API.Models
 
         public ResultadoCampeonato Iniciar()
         {
+            Filme[] paraSaberOSegundoLugar = new Filme[2];
 
             if (this.filmes.Length == 0) return null;
             do
             {
                 this.filmes = fase.comecar();
+                if(this.filmes.Length == 2)
+                {
+                    paraSaberOSegundoLugar = this.filmes;
+                }
             } while (fase.proximaFase(this.filmes));
 
             ResultadoCampeonato resultado = new ResultadoCampeonato();
 
             Filme vencedor = fase.getGanhador();
+            Filme segundoFilme = null;
+            if (vencedor == null) return null;
+
+            if (paraSaberOSegundoLugar[0].Equals(vencedor)) segundoFilme = paraSaberOSegundoLugar[1];
+            else segundoFilme = paraSaberOSegundoLugar[0];
 
             if (vencedor == null) return null;
 
-            resultado.Titulo = vencedor.Titulo;
-            resultado.Nota = vencedor.Nota;
-            resultado.Id = vencedor.Id;
-            resultado.AnoLancamento = vencedor.AnoLancamento;
+            resultado.primeiroLugar = vencedor.Titulo;
+            resultado.segundoLugar = segundoFilme.Titulo;
+
+            
+     
 
             return resultado;
         }
